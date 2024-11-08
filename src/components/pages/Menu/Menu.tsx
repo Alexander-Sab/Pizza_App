@@ -1,5 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Search } from '../../../Search/Search';
+import { Headling } from '../../Headling/Headling';
+import styles from './Menu.module.css';
 
 export function Menu() {
-	return <>Menu</>;
+	return (
+		<>
+			<div className={styles.head}>
+				<Headling>Меню</Headling>
+				<Search placeholder="Введите блюдо или состав" />
+			</div>
+		</>
+	);
 }
