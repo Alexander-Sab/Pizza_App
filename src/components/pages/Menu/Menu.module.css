@@ -1,0 +1,7 @@
+.head {
+	display: flex;
+	justify-content: space-between;
+}
+.loading {
+	border-radius: 50%;
+}
