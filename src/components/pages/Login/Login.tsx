@@ -2,11 +2,12 @@ import { Headling } from '../../Headling/Headling';
 import { Button } from '../../Button/Button';
 import styles from './Login.module.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { FormEvent, useState } from 'react';
-import axios, { AxiosError } from 'axios';
-import { PREFIX } from '../../../helpers/API';
-import { LoginResponse } from '../../interfaces/auth.interface';
+import { FormEvent, useEffect } from 'react';
+
 import { Input } from '../../Input/Input';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../../store/store';
+import { login, userActions } from '../../../store/user.slice';
 
 export type LoginForm = {
 	email: {
@@ -18,12 +19,21 @@ export type LoginForm = {
 };
 
 export function Login() {
-	const [error, setError] = useState<string | null>();
 	const navigate = useNavigate();
+	const dispatch = useDispatch<AppDispatch>();
+	const { jwt, loginErrorMessage } = useSelector(
+		(state: RootState) => state.user
+	);
+
+	useEffect(() => {
+		if (jwt) {
+			navigate('/');
+		}
+	}, [jwt, navigate]);
 
 	const onSubmit = async (e: FormEvent) => {
 		e.preventDefault();
-		setError(null);
+		dispatch(userActions.clearLoginError());
 		const target = e.target as typeof e.target & LoginForm;
 		const { email, password } = target;
 
@@ -31,28 +41,14 @@ export function Login() {
 	};
 
 	const senLogin = async (email: string, password: string) => {
-		try {
-			const { data } = await axios.post<LoginResponse>(
-				`${PREFIX}/auth/login`,
-				{
-					email,
-					password
-				}
-			);
-			console.log(data);
-			localStorage.setItem('jwt', data.access_token);
-			navigate('/');
-		} catch (e) {
-			if (e instanceof AxiosError) {
-				console.error(e);
-				setError(e.response?.data.message);
-			}
-		}
+		dispatch(login({ email, password }));
 	};
 	return (
 		<div className={styles.login}>
 			<Headling>Вход</Headling>
-			{error && <div className={styles.error}>{error}</div>}
+			{loginErrorMessage && (
+				<div className={styles.error}>{loginErrorMessage}</div>
+			)}
 			<form className={styles.form} onSubmit={onSubmit}>
 				<div className={styles.field}>
 					<label htmlFor="email"> Ваш email</label>
