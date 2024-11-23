@@ -1,6 +1,7 @@
 import { Await, useLoaderData } from 'react-router';
 import type { Product } from '../../interfaces/product.interfaces';
 import { Suspense } from 'react';
+import { ProductList } from './ProductList/ProductList';
 
 export function Product() {
 	const data = useLoaderData() as { data: Product };
@@ -9,7 +10,7 @@ export function Product() {
 			<Suspense fallback={'Загружаю...'}>
 				<Await resolve={data.data}>
 					{({ data }: { data: Product }) => (
-						<>Product - {data.name}</>
+						<ProductList data={data} />
 					)}
 				</Await>
 			</Suspense>

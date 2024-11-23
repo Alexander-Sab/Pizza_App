@@ -9,33 +9,44 @@ export function Cartitem(props: CartItemProps) {
 	const increase = () => {
 		dispatch(cartActions.add(props.id));
 	};
-	const descrease = () => {};
+	const descrease = () => {
+		dispatch(cartActions.remove(props.id));
+	};
 
-	const remove = () => {};
+	const remove = () => {
+		dispatch(cartActions.delete(props.id));
+	};
 
 	return (
 		<div className={styles.item}>
-			<div className={styles.head}>
-				<div
-					className={styles.image}
-					style={{ backgroundImage: `url(${props.image})` }}
-				></div>
-				<div className={styles.discription}>
-					<div className={styles.name}>{props.name}</div>
-					<div className={styles.currency}>{props.price}&nbsp;₽</div>
-					<div className={styles.actions}>
-						<button className={styles.button} onClick={descrease}>
-							<img src="/cart-button-icon.svg" alt="descrease" />
-						</button>
-						<div>{props.count}</div>
-						<button className={styles.button} onClick={increase}>
-							<img src="/cart-button-icon.svg" alt="increase" />
-						</button>
-						<button className={styles.remove} onClick={remove}>
-							<img src="/cart-button-icon.svg" alt="delete" />
-						</button>
-					</div>
-				</div>
+			<div
+				className={styles.image}
+				style={{ backgroundImage: `url(${props.image})` }}
+			></div>
+			<div className={styles.discription}>
+				<div className={styles.name}>{props.name}</div>
+				<div className={styles.currency}>{props.price}&nbsp;₽</div>
+			</div>
+			<div className={styles.actions}>
+				<button
+					className={`${styles.button} ${styles.minus}`}
+					onClick={descrease}
+				>
+					<img src="/icon/minus.svg" alt="descrease" />
+				</button>
+				<div className={styles.count}>{props.count}</div>
+				<button
+					className={`${styles.button} ${styles.plus}`}
+					onClick={increase}
+				>
+					<img src="/icon/plus.svg" alt="increase" />
+				</button>
+				<button
+					className={`${styles.button} ${styles.crestic}`}
+					onClick={remove}
+				>
+					<img src="/icon/crestic.svg" alt="delete" />
+				</button>
 			</div>
 		</div>
 	);
