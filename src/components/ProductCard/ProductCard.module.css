@@ -5,6 +5,9 @@
 	position: relative;
 	min-height: 165px;
 	border-radius: 19px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 }
 
 .card {
@@ -61,6 +64,7 @@
 
 	font-size: 12px;
 	font-weight: 400;
+	color: var(--text-color);
 
 	background: var(--white-color);
 	box-shadow: 0px 6.07px 24.29px 0px #fe724c33;

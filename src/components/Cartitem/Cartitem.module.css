@@ -1,0 +1,85 @@
+.item {
+	display: flex;
+	gap: 20px;
+	max-width: 512px;
+	margin-bottom: 27px;
+}
+
+.image {
+	width: 82px;
+	height: 82px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	border-radius: 20px;
+
+	box-shadow: 0px 8px 25px 0px #e0dbc4e5;
+}
+
+.discription {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.name {
+	font-size: 18.21px;
+	font-weight: 600;
+	line-height: 24.8px;
+	color: var(--text-color);
+}
+
+.currency {
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 21.79px;
+	color: var(--primary-color);
+}
+
+.actions {
+	margin-left: auto;
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	align-self: flex-start;
+}
+
+.button {
+	width: 29px;
+	height: 29px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+
+	cursor: pointer;
+}
+
+.button:hover {
+	background: var(--separator-color);
+}
+
+.minus {
+	border: 1px solid #fe724c;
+	box-shadow: 0px 20px 30px 0px #eef0f2;
+	background: var(--white-color);
+	background: var(--white-color);
+}
+
+.plus {
+	border: 1px solid #fe724c;
+	background: var(--primary-color);
+	box-shadow: 0px 7px 15px 0px rgba(254, 114, 76, 0.4);
+}
+
+.crestic {
+	border: 1px solid rgba(255, 54, 0, 1);
+	border: none;
+	background: var(--white-color);
+}
+
+.count {
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 21.79px;
+	color: var(--text-color);
+}

@@ -12,7 +12,7 @@ export function MenuList({ products }: MenuListProps) {
 					name={p.name}
 					description={p.ingredients.join(', ')}
 					rating={p.rating}
-					price={p.price}
+					price={p.price ?? 0}
 					image={p.image}
 				/>
 			))}
